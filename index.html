@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pilihan Menu Animasi</title>
+  <style>
+    body {
+      font-family: arial, sans-serif;
+      text-align: center;
+      margin: 40px;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .pilihan button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      background: #6c63ff;
+      color: white;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .pilihan button:hover {
+      background: #5146d9;
+      transform: scale(1.1) rotate(-2deg);
+    }
+
+    .konten {
+      display: none;
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 20px;
+      background: white;
+      font-size: 20px;
+      color: #444;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: fadeSlide 0.6s ease;
+    }
+<style>
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9) rotate(-3deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+      }
+    }
+
+  .galeri {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    justify-items: center;
+  }
+
+  .galeri img {
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+
+  <h2>Pilih yang manaaa duluuu yaaa??? WKWKKWK</h2>
+  <div class="pilihan">
+    <button onclick="tampilKonten(1)">1</button>
+    <button onclick="tampilKonten(2)">2</button>
+    <button onclick="tampilKonten(3)">3</button>
+    <button onclick="tampilKonten(4)">4</button>
+  </div>
+
+  <!-- Isi Konten -->
+  <div id="konten1" class="konten">Terimakasih Sayang!, Udah mau jadi kesayangan aku untuk selamaaa iniiiii!!!!!
+    akuuu harappp kitaaa bisaaa selamanyaa bareng sayanggg.. maafinn sikap aku yang sering bikin kamuu kecewaa yaa sayanggg,
+    akuuu tidaaa ada sama sekalii niatan untuk ngecewain kamuu.. akuu selaluu sayangg samaa kamuuu.. Aku salah dengan sikap aku yang terus terusan
+    kayaa gituu tapiii percayalaaa sayanggg. akuu sesayangg itu samaa kammuuu.. I LOVEE YOUUUU SAYANGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+  </div>
+  <div id="konten2" class="konten">
+  🐱 Ini isi pilihan <b>2</b>, inii fotooo kenangan kitaa semuaaa! 😺 <br><br>
+
+  <div class="galeri">
+    <img src="images/FOTO 1.png" alt="Bricks" width="200">
+    <img src="images/FOTO 2.png" alt="Basket di PBS" width="200">
+    <img src="images/FOTO 3.jpg" alt="Beach Run" width="200">
+    <img src="images/IMG_3508.HEIC" alt="Foto Bareng Baju Jurusan" width="200">
+  </div>
+</div>
+  <!-- Musik khusus untuk konten 3 -->
+<div id="konten3" class="konten">🚀 Ini isi pilihan <b>3</b>,LAGUU UNTUK KAMU 
+    <audio controls>
+  <source src="Kahitna - Cantik (eclat cover).mp3" type="audio/mpeg">
+</audio> 🌌</div>
+</div>
+  <!-- Konten 4 (Game) -->
+<div id="konten4" class="konten">
+  🎮 Ini isi pilihan <b>4</b>, Game Klik Foto Lucu. WKWKWKWKWK <br><br>
+
+  <h3>⏱️ Waktu: <span id="waktu">30</span> detik</h3>
+  <p>Skor: <span id="skor">0</span> | High Score: <span id="highscore">0</span></p>
+  <button onclick="mulaiGame()">Mulai Game</button>
+
+  <div id="arena"></div>
+</div>
+
+<style>
+  #konten4 #arena {
+    width: 500px;
+    height: 400px;
+    margin: 20px auto;
+    border: 3px solid #333;
+    position: relative;
+    background: #f9f9f9;
+  }
+  #konten4 .kotak {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+</style>
+
+<script>
+  let skor = 0;
+  let highscore = 0;
+  let waktu = 30;
+  let timer;
+  let kotak;
+  let arena = document.getElementById("arena");
+
+  // daftar foto
+  let daftarFoto = ["images/foto1.jpg", "images/foto2.jpg", "images/foto3.jpg"];
+
+  function buatKotak() {
+    if (kotak) kotak.remove();
+
+    kotak = document.createElement("img");
+
+    let randomFoto = daftarFoto[Math.floor(Math.random() * daftarFoto.length)];
+    kotak.src = randomFoto;
+    kotak.classList.add("kotak");
+
+    let x = Math.random() * (arena.clientWidth - 80);
+    let y = Math.random() * (arena.clientHeight - 80);
+    kotak.style.left = x + "px";
+    kotak.style.top = y + "px";
+
+    kotak.onclick = function() {
+      skor++;
+      document.getElementById("skor").textContent = skor;
+      buatKotak();
+    };
+
+    arena.appendChild(kotak);
+  }
+
+  function mulaiGame() {
+    skor = 0;
+    waktu = 30;
+    document.getElementById("skor").textContent = skor;
+    document.getElementById("waktu").textContent = waktu;
+
+    if (kotak) kotak.remove();
+
+    buatKotak();
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      waktu--;
+      document.getElementById("waktu").textContent = waktu;
+
+      if (waktu <= 0) {
+        clearInterval(timer);
+        if (kotak) kotak.remove();
+
+        if (skor > highscore) {
+          highscore = skor;
+          document.getElementById("highscore").textContent = highscore;
+          alert("⏱️ Waktu habis! 🎉 Skor Baru: " + skor + " (High Score!)");
+        } else {
+          alert("⏱️ Waktu habis! Skor kamu: " + skor);
+        }
+      }
+    }, 1000);
+  }
+
+  // update fungsi tampilkanKonten
+  function tampilkanKonten(no) {
+    document.querySelectorAll(".konten").forEach(k => k.style.display = "none");
+    document.getElementById("konten" + no).style.display = "block";
+
+    if (no !== 4) {
+      if (kotak) kotak.remove();
+      clearInterval(timer);
+    }
+  }
+</script>
+
+  <script>
+    function tampilKonten(no) {
+      // sembunyikan semua konten dulu
+      let semuaKonten = document.querySelectorAll(".konten");
+      semuaKonten.forEach(k => k.style.display = "none");
+
+      // tampilkan konten sesuai nomor
+      let target = document.getElementById("konten" + no);
+      target.style.display = "block";
+
+      // reset animasi biar jalan lagi
+      target.style.animation = "none";
+      target.offsetHeight; // trik reset
+      target.style.animation = null;
+    }
+  </script>
+
+</body>
+</html>
